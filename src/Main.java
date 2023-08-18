@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 import static java.lang.System.exit;
 
 class bankAccount {
@@ -25,7 +24,7 @@ class bankAccount {
     }
 
     boolean displayAccountBalance() {
-        System.out.println("Display account Number: " + accountNumber);
+        System.out.println("Account Number: " + accountNumber);
         System.out.println("Account holder: " + accountHolder);
         System.out.println("Balance: " + balance);
         return false;
@@ -33,19 +32,28 @@ class bankAccount {
 }
 public class Main {
     public static void main(String[] args) {
-    boolean keepGoing = true;
+        Scanner scanner = new Scanner(System.in);
+        boolean keepGoing = true;
+
 
         bankAccount bankAccount1 = new bankAccount();
-        bankAccount1.accountNumber = 1234;
-        bankAccount1.accountHolder = "Emiliano Rodriguez";
-        bankAccount1.balance = 100;
+        System.out.println("Choose an Account number");
+        bankAccount1.accountNumber = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("What is your name?");
+        bankAccount1.accountHolder = (String) scanner.nextLine();
+
+        System.out.println("Add some money to your account!");
+        bankAccount1.balance = (float) scanner.nextDouble();
+        scanner.nextLine();
+
         while (keepGoing) {
             System.out.println("What would you like to do?");
             System.out.println("1. Deposit");
             System.out.println("2. Withdraw");
             System.out.println("3. Display Account Balance");
             System.out.println("4. Sign out.");
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
 
                 switch (input) {
@@ -54,6 +62,7 @@ public class Main {
                         double depositAmount = scanner.nextDouble();
                         bankAccount1.Deposit(depositAmount);
                         System.out.println("Your new balance is: " + bankAccount1.balance);
+                        scanner.nextLine();
                         break;
                     case "2":
                         System.out.println("How much do you want to withdraw?");
